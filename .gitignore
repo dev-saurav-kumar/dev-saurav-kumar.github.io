@@ -1,0 +1,6 @@
+# Private files that must never be published: the repository is public.
+*.pdf
+.claude/
+assets/My Image.png
+/*.png
+drafts/
