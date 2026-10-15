@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://sauravkumar.goatcounter.com; form-action 'none'; base-uri 'self'; object-src 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Why you should never put SOQL or DML inside a loop | Saurav Kumar</title>
-  <meta name="description" content="A common Salesforce interview question, with the reason behind the rule and the fix.">
+  <title>Why you should never put SOQL or DML inside a loop (Salesforce interview question) | Saurav Kumar</title>
+  <meta name="description" content="A common Salesforce interview question: why SOQL and DML inside a loop break, the error you will see, the fix, how to test it, and the follow-up questions.">
   <link rel="canonical" href="https://dev-saurav-kumar.github.io/blog/why-you-should-never-put-soql-or-dml-inside-a-loop.html">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Why you should never put SOQL or DML inside a loop | Saurav Kumar">
-  <meta property="og:description" content="A common Salesforce interview question, with the reason behind the rule and the fix.">
+  <meta property="og:title" content="Why you should never put SOQL or DML inside a loop (Salesforce interview question) | Saurav Kumar">
+  <meta property="og:description" content="A common Salesforce interview question: why SOQL and DML inside a loop break, the error you will see, the fix, how to test it, and the follow-up questions.">
   <meta property="og:url" content="https://dev-saurav-kumar.github.io/blog/why-you-should-never-put-soql-or-dml-inside-a-loop.html">
   <meta property="og:image" content="https://dev-saurav-kumar.github.io/blog/images/why-you-should-never-put-soql-or-dml-inside-a-loop-card.jpg">
   <meta property="og:image:width" content="1200">
@@ -23,7 +23,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/styles.css">
   <script src="../assets/theme.js"></script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Why you should never put SOQL or DML inside a loop","description":"A common Salesforce interview question, with the reason behind the rule and the fix.","datePublished":"2026-10-11","dateModified":"2026-10-11","image":"https://dev-saurav-kumar.github.io/blog/images/why-you-should-never-put-soql-or-dml-inside-a-loop-card.jpg","url":"https://dev-saurav-kumar.github.io/blog/why-you-should-never-put-soql-or-dml-inside-a-loop.html","mainEntityOfPage":"https://dev-saurav-kumar.github.io/blog/why-you-should-never-put-soql-or-dml-inside-a-loop.html","articleSection":"Interview question","author":{"@type":"Person","name":"Saurav Kumar","url":"https://dev-saurav-kumar.github.io/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Why you should never put SOQL or DML inside a loop (Salesforce interview question)","description":"A common Salesforce interview question: why SOQL and DML inside a loop break, the error you will see, the fix, how to test it, and the follow-up questions.","datePublished":"2026-10-11","dateModified":"2026-10-16","image":"https://dev-saurav-kumar.github.io/blog/images/why-you-should-never-put-soql-or-dml-inside-a-loop-card.jpg","url":"https://dev-saurav-kumar.github.io/blog/why-you-should-never-put-soql-or-dml-inside-a-loop.html","mainEntityOfPage":"https://dev-saurav-kumar.github.io/blog/why-you-should-never-put-soql-or-dml-inside-a-loop.html","articleSection":"Interview question","author":{"@type":"Person","name":"Saurav Kumar","url":"https://dev-saurav-kumar.github.io/"}}</script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -49,8 +49,8 @@
 
     <section class="page-hero">
       <div class="container">
-        <p class="eyebrow"><span>Interview question · <span class="nowrap">11 October 2026</span> · <span class="nowrap">1 min read</span></span></p>
-        <h1>Why you should never put SOQL or DML inside a loop</h1>
+        <p class="eyebrow"><span>Interview question · <span class="nowrap">11 October 2026</span> · <span class="nowrap">4 min read</span></span></p>
+        <h1>Why you should never put SOQL or DML inside a loop (Salesforce interview question)</h1>
       </div>
     </section>
 
@@ -58,45 +58,104 @@
       <div class="container">
         <article class="post" data-slug="why-you-should-never-put-soql-or-dml-inside-a-loop" data-category="Interview question">
           <div class="post-body">
-            <p>This is one of the most common questions in a Salesforce developer interview. The short answer is &quot;governor limits&quot;, but a good answer explains what actually goes wrong.</p>
+            <p>This is one of the most common questions in a Salesforce developer interview. Most people answer "governor limits" and stop there. A strong answer explains what actually breaks, shows the fix, and shows how you would prove the fix works.</p>
             <h2>The question</h2>
-            <p>&quot;Why is it a bad practice to write a SOQL query or a DML statement inside a for loop?&quot;</p>
+            <p>"Why is it a bad practice to write a SOQL query or a DML statement inside a for loop?"</p>
             <h2>The short answer</h2>
-            <p>Salesforce limits how much one transaction can do. In a synchronous transaction you get 100 SOQL queries and 150 DML statements. A trigger can receive up to 200 records at a time. If your code runs one query per record, 200 records means 200 queries, and the transaction fails.</p>
+            <p>Salesforce limits how much work one transaction can do. In normal (synchronous) code you get <strong>100 SOQL queries</strong> and <strong>150 DML statements</strong>. A trigger can receive <strong>up to 200 records</strong> at a time.</p>
+            <p><mark>If your code runs one query per record, 200 records means 200 queries, and the whole transaction fails.</mark></p>
+            <h2>The error you will see</h2>
+            <p>When the code goes over the limit, Salesforce stops it and rolls back everything it did. The error looks like this:</p>
+            <pre><code class="language-text">System.LimitException: Too many SOQL queries: 101</code></pre>
+            <p>For DML inside a loop, the message is <code>Too many DML statements: 151</code>. A limit error cannot be caught with try and catch, so the only real fix is to change the code.</p>
             <h2>Code that breaks</h2>
-            <pre><code class="language-apex">for (Account acc : Trigger.new) {
-    List&lt;Contact&gt; contacts = [SELECT Id FROM Contact WHERE AccountId = :acc.Id];
+            <p>This trigger copies an account's phone number to all of its contacts:</p>
+            <pre><code class="language-apex">trigger AccountTrigger on Account (after update) {
+    for (Account acc : Trigger.new) {
+        List&lt;Contact&gt; contacts = [SELECT Id FROM Contact WHERE AccountId = :acc.Id];
+        for (Contact c : contacts) {
+            c.Phone = acc.Phone;
+            update c;
+        }
+    }
+}</code></pre>
+            <p>It works when you test it with one account. It fails when a data load updates 200 accounts, because the query runs 200 times, and the update runs once for every single contact.</p>
+            <h2>The fix</h2>
+            <p>Run one query for all the accounts, change the contacts in memory, and save them all with one update. <code>Trigger.newMap</code> gives each account by its Id, so every contact can find its own account without another query.</p>
+            <pre><code class="language-apex">trigger AccountTrigger on Account (after update) {
+    List&lt;Contact&gt; contacts = [SELECT Id, AccountId FROM Contact WHERE AccountId IN :Trigger.newMap.keySet()];
+
     for (Contact c : contacts) {
-        c.Description = &#39;Updated&#39;;
-        update c;
+        c.Phone = Trigger.newMap.get(c.AccountId).Phone;
+    }
+
+    update contacts;
+}</code></pre>
+            <p>Now the code uses <strong>one query and one DML statement</strong>, whether it receives 1 account or 200.</p>
+            <h2>Other limits worth knowing</h2>
+            <ul><li><strong>200 SOQL queries</strong> in asynchronous code (Batch, Queueable, future methods), instead of 100</li><li><strong>50,000 records</strong> in total can be returned by all queries in one transaction</li><li><strong>10,000 records</strong> in total can be changed by DML in one transaction</li><li><strong>150 DML statements</strong>, in both synchronous and asynchronous code</li></ul>
+            <h2>How to prove your code is safe</h2>
+            <p>Write a test that sends 200 records at once, the same as a real data load:</p>
+            <pre><code class="language-apex">@isTest
+private class AccountTriggerTest {
+    @isTest
+    static void updatesTwoHundredAccounts() {
+        List&lt;Account&gt; accounts = new List&lt;Account&gt;();
+        for (Integer i = 0; i &lt; 200; i++) {
+            accounts.add(new Account(Name = 'Test ' + i));
+        }
+        insert accounts;
+
+        List&lt;Contact&gt; contacts = new List&lt;Contact&gt;();
+        for (Account acc : accounts) {
+            contacts.add(new Contact(LastName = 'Test', AccountId = acc.Id));
+        }
+        insert contacts;
+
+        for (Account acc : accounts) {
+            acc.Phone = '9999999999';
+        }
+
+        Test.startTest();
+        update accounts;
+        Test.stopTest();
+
+        Assert.areEqual(200, [SELECT COUNT() FROM Contact WHERE Phone = '9999999999']);
+    }
+}</code></pre>
+            <p>If the trigger had a query inside the loop, this test would fail with the limit error. You can also see how many queries your code has used at any point:</p>
+            <pre><code class="language-apex">System.debug(Limits.getQueries() + ' of ' + Limits.getLimitQueries() + ' queries used');</code></pre>
+            <h2>What the interviewer wants to hear</h2>
+            <ul><li>You know the limits are per transaction, not per record.</li><li>You always write code for many records, not for one.</li><li>You know the pattern: collect the Ids, query once, change in memory, update once.</li><li>You test with 200 records to prove it.</li></ul>
+            <h2>Follow-up questions to expect</h2>
+            <h3>What if I need the related records for each parent?</h3>
+            <p>Use a subquery, so one query brings each account together with its contacts:</p>
+            <pre><code class="language-apex">List&lt;Contact&gt; contactsToUpdate = new List&lt;Contact&gt;();
+
+for (Account acc : [SELECT Id, Phone, (SELECT Id FROM Contacts) FROM Account WHERE Id IN :Trigger.newMap.keySet()]) {
+    for (Contact c : acc.Contacts) {
+        c.Phone = acc.Phone;
+        contactsToUpdate.add(c);
     }
 }
-</code></pre>
-            <p>This works when you test it with one record. It fails when a data load sends 200 accounts, because the query runs 200 times.</p>
-            <h2>The fix</h2>
-            <p>Collect the Ids first, run one query, change the records in memory, and run one update.</p>
-            <pre><code class="language-apex">Set&lt;Id&gt; accountIds = new Set&lt;Id&gt;();
-for (Account acc : Trigger.new) {
-    accountIds.add(acc.Id);
+
+update contactsToUpdate;</code></pre>
+            <p>Or run one query and group the results in a <code>Map&lt;Id, List&lt;Contact&gt;&gt;</code>, with the account Id as the key.</p>
+            <h3>Can I read the account's phone in the same query?</h3>
+            <p>Yes. Query the contacts and include <code>Account.Phone</code>, the parent's field. Each contact then carries its account's phone, so you do not need a map at all:</p>
+            <pre><code class="language-apex">List&lt;Contact&gt; contactsToUpdate = new List&lt;Contact&gt;();
+
+for (Contact con : [SELECT Id, Phone, Account.Phone FROM Contact WHERE AccountId IN :Trigger.newMap.keySet()]) {
+    con.Phone = con.Account.Phone;
+    contactsToUpdate.add(con);
 }
 
-List&lt;Contact&gt; contacts = [ SELECT Id, Description FROM Contact WHERE AccountId IN :accountIds ];
-
-for (Contact c : contacts) {
-    c.Description = &#39;Updated&#39;;
-}
-
-update contacts;
-</code></pre>
-            <p>Now the code uses one query and one DML statement, whether it receives 1 record or 200.</p>
-            <h2>What the interviewer wants to hear</h2>
-            <ul>
-            <li>You know the limits are per transaction, not per record.</li>
-            <li>You always write code for many records, not for one.</li>
-            <li>You know the pattern: collect, query once, update once.</li>
-            </ul>
-            <h2>The same rule applies to Flows</h2>
-            <p>A Get Records or Update Records element inside a Flow loop has the same problem. Move it outside the loop and use a collection.</p>
+update contactsToUpdate;</code></pre>
+            <p>This works in an <code>after update</code> trigger, because by then the query already sees the account's new phone number.</p>
+            <h3>Can I avoid the limit by catching the error?</h3>
+            <p>No. A <code>LimitException</code> cannot be caught. The code has to be written so it never reaches the limit.</p>
+            <h3>Does the same rule apply to Flows?</h3>
+            <p>Yes. A Get Records, Create Records or Update Records element inside a Flow loop counts against the same limits. Move it outside the loop: collect the records in a collection variable inside the loop, then save them with one element after it.</p>
           </div>
           <div class="post-share">
             <span>Share this post</span>

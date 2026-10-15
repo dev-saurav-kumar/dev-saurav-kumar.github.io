@@ -11,12 +11,13 @@
     },
     {
       "slug": "why-you-should-never-put-soql-or-dml-inside-a-loop",
-      "title": "Why you should never put SOQL or DML inside a loop",
+      "title": "Why you should never put SOQL or DML inside a loop (Salesforce interview question)",
       "date": "2026-10-11",
+      "updated": "2026-10-16",
       "category": "Interview question",
       "access": "free",
       "link": "",
-      "summary": "A common Salesforce interview question, with the reason behind the rule and the fix."
+      "summary": "A common Salesforce interview question: why SOQL and DML inside a loop break, the error you will see, the fix, how to test it, and the follow-up questions."
     }
   ]
 }
