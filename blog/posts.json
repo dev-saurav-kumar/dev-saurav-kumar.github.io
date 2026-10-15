@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "slug": "everything-is-easy-when-you-are-busy",
+      "title": "Everything is easy when you are busy: what this quote taught me about overthinking",
+      "date": "2026-10-15",
+      "category": "Reflection",
+      "access": "free",
+      "link": "",
+      "summary": "What one quote taught me about overthinking, unstructured time, and choosing where my attention goes."
+    },
+    {
+      "slug": "why-you-should-never-put-soql-or-dml-inside-a-loop",
+      "title": "Why you should never put SOQL or DML inside a loop",
+      "date": "2026-10-11",
+      "category": "Interview question",
+      "access": "free",
+      "link": "",
+      "summary": "A common Salesforce interview question, with the reason behind the rule and the fix."
+    }
+  ]
+}

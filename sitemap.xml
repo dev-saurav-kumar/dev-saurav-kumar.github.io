@@ -2,4 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://dev-saurav-kumar.github.io/</loc></url>
   <url><loc>https://dev-saurav-kumar.github.io/work-with-me.html</loc></url>
+  <url><loc>https://dev-saurav-kumar.github.io/blog.html</loc></url>
+  <url><loc>https://dev-saurav-kumar.github.io/blog/everything-is-easy-when-you-are-busy.html</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>https://dev-saurav-kumar.github.io/blog/why-you-should-never-put-soql-or-dml-inside-a-loop.html</loc><lastmod>2026-10-11</lastmod></url>
 </urlset>
