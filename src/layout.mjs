@@ -51,7 +51,12 @@ export const layout = (content, { title, description, path = '', root = '', home
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="${securityPolicy(site.analyticsCountUrl)}">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>${esc(title)}</title>
+${
+    site.googleVerification
+      ? `  <meta name="google-site-verification" content="${esc(site.googleVerification)}">
+`
+      : ''
+  }  <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}">
   <link rel="canonical" href="${esc(site.url)}${path}">
   <meta property="og:type" content="website">

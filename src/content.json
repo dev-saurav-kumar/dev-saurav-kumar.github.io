@@ -13,7 +13,8 @@
     "language": "en",
     "favicon": "assets/favicon.svg",
     "themeColor": "#0a0f1e",
-    "analyticsCountUrl": "https://sauravkumar.goatcounter.com/count"
+    "analyticsCountUrl": "https://sauravkumar.goatcounter.com/count",
+    "googleVerification": "KyVaxk0iY4NHzh8kAT00Ypj7dDPhv3FSzl2O1mB5lDM"
   },
 
   "seo": {
