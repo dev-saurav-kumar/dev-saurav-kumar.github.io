@@ -4,3 +4,6 @@
 assets/My Image.png
 /*.png
 drafts/
+
+# Files kept aside for another project; never published.
+/not needed/

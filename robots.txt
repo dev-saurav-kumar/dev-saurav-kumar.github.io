@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: /admin/
+Disallow:
 
 Sitemap: https://dev-saurav-kumar.github.io/sitemap.xml
