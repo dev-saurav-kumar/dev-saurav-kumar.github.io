@@ -36,7 +36,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
-  scroll-padding-top: 119px;
+  scroll-padding-top: 73px;
 }
 
 body {
@@ -194,7 +194,6 @@ h3,
 .btn,
 .brand,
 .site-nav a,
-.page-nav a,
 .jump a,
 .more,
 .tag,
@@ -278,7 +277,7 @@ h3,
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--on-dark);
   text-decoration: none;
@@ -290,6 +289,12 @@ h3,
 }
 
 .site-nav a[aria-current="page"]:not(.btn) {
+  box-shadow: inset 0 -2px 0 var(--amber);
+}
+
+/* The section being read is underlined in the menu. */
+.site-nav a.is-active:not(.btn) {
+  color: #fff;
   box-shadow: inset 0 -2px 0 var(--amber);
 }
 
@@ -477,6 +482,115 @@ h3,
 
 /* ---------- Home hero ---------- */
 
+/* Moving network of dots behind the hero text. */
+.hero-net {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Terminal-style line that types out what Saurav works on. */
+.typed {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 28px;
+  margin-top: 18px;
+  font-family: var(--mono);
+  font-size: 15px;
+  color: #9cc4ff;
+}
+
+.typed-prompt {
+  color: var(--amber);
+  font-weight: 700;
+}
+
+.typed-caret {
+  width: 9px;
+  height: 18px;
+  margin-left: -6px;
+  background: #9cc4ff;
+  animation: caret-blink 1s steps(1) infinite;
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Back to top: appears once the page has scrolled past the first screen. */
+.to-top {
+  position: fixed;
+  right: clamp(16px, 3vw, 32px);
+  bottom: calc(clamp(16px, 3vw, 32px) + var(--lift, 0px));
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5aa2ff, #2563eb);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  translate: 0 12px;
+  transition: opacity 0.25s ease, translate 0.25s ease, visibility 0.25s;
+}
+
+.menu-open .to-top {
+  display: none;
+}
+
+.to-top.is-shown {
+  opacity: 1;
+  visibility: visible;
+  translate: 0 0;
+}
+
+.to-top:hover {
+  background: linear-gradient(135deg, #4b93f5, #1d4ed8);
+}
+
+.to-top svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Reading progress: a thin line under the menu that grows as the page scrolls. */
+.scroll-progress {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--amber), #ffcf70);
+  transform: scaleX(var(--progress, 0));
+  transform-origin: left;
+  pointer-events: none;
+}
+
+
 .hero-intro {
   padding-block: calc(clamp(20px, 3.5vw, 44px) + 73px) 20px;
   background-image:
@@ -639,7 +753,7 @@ h3,
   white-space: nowrap;
   writing-mode: vertical-rl;
   padding-bottom: 54px;
-  background: linear-gradient(#93a0b8, #93a0b8) bottom center / 1px 40px no-repeat;
+  background: linear-gradient(var(--follow-line, #93a0b8), var(--follow-line, #93a0b8)) bottom center / 1px 40px no-repeat;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.16em;
@@ -749,39 +863,6 @@ h3,
   align-items: center;
   gap: 10px;
   color: var(--ink);
-}
-
-/* ---------- In-page links ---------- */
-
-/* Stays pinned under the menu, so it is never half hidden after jumping to a section. */
-.page-nav {
-  position: sticky;
-  top: 71px;
-  z-index: 40;
-  border-bottom: 1px solid var(--line);
-  background: #fff;
-}
-
-.page-nav .container {
-  display: flex;
-  gap: 8px 28px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.page-nav a {
-  flex: none;
-  display: inline-flex;
-  align-items: center;
-  min-height: 48px;
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--text);
-  text-decoration: none;
-}
-
-.page-nav a:hover {
-  color: var(--blue);
 }
 
 /* ---------- Sections ---------- */
@@ -1101,6 +1182,15 @@ a.card:hover,
   border: 1px solid var(--line);
   border-radius: 22px;
   background: #fff;
+  transition: translate 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (hover: hover) {
+  .case:hover {
+    translate: 0 -3px;
+    border-color: rgba(37, 99, 235, 0.45);
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+  }
 }
 
 .case + .case {
@@ -1412,16 +1502,11 @@ details.case + details.case {
   min-height: calc(100svh - 73px);
   padding-block: calc(73px + 24px) 24px;
   /* A link to this section scrolls all the way to the end of the page. */
-  scroll-margin-top: -119px;
+  scroll-margin-top: -73px;
 }
 
 .cta > .container {
   flex: 1;
-}
-
-/* On the portfolio page the section strip is pinned under the menu too, so leave room for both. */
-#main:has(.page-nav) .cta {
-  padding-top: calc(120px + 24px);
 }
 
 .cta-band {
@@ -1679,6 +1764,141 @@ fieldset.field {
   display: none;
 }
 
+/* ---------- Light theme: hero and menu ---------- */
+/* In light mode the first screen and the menu are light as well, so switching the theme
+   visibly changes the whole page. Dark mode keeps the dark hero. */
+
+:root:not([data-theme="dark"]) .hero,
+:root:not([data-theme="dark"]) .page-hero {
+  background-color: #f3f6fd;
+  background-image:
+    radial-gradient(60% 80% at 85% 0%, rgba(37, 99, 235, 0.12), transparent 70%),
+    linear-gradient(rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
+  color: var(--text);
+}
+
+:root:not([data-theme="dark"]) .hero-intro {
+  background-image:
+    radial-gradient(50% 70% at 0% 10%, rgba(14, 116, 180, 0.13), transparent 70%),
+    radial-gradient(55% 80% at 100% 20%, rgba(88, 60, 200, 0.11), transparent 70%),
+    linear-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+}
+
+:root:not([data-theme="dark"]) .hero::before,
+:root:not([data-theme="dark"]) .page-hero::before {
+  opacity: 0.5;
+}
+
+:root:not([data-theme="dark"]) .hero h1,
+:root:not([data-theme="dark"]) .page-hero h1,
+:root:not([data-theme="dark"]) .hero .eyebrow,
+:root:not([data-theme="dark"]) .page-hero .eyebrow,
+:root:not([data-theme="dark"]) .hero-intro .lede b {
+  color: var(--ink);
+}
+
+:root:not([data-theme="dark"]) .hero .accent,
+:root:not([data-theme="dark"]) .hello {
+  color: var(--blue);
+}
+
+:root:not([data-theme="dark"]) .typed {
+  color: #1d4ed8;
+}
+
+:root:not([data-theme="dark"]) .typed-caret {
+  background: #1d4ed8;
+}
+
+:root:not([data-theme="dark"]) .hero-visual::before {
+  border-color: rgba(37, 99, 235, 0.3);
+}
+
+:root:not([data-theme="dark"]) .hero-visual::after {
+  border-color: rgba(37, 99, 235, 0.12);
+}
+
+:root:not([data-theme="dark"]) .portrait {
+  box-shadow: 0 18px 50px rgba(37, 99, 235, 0.28);
+}
+
+:root:not([data-theme="dark"]) .follow-label,
+:root:not([data-theme="dark"]) .scroll-cue {
+  color: var(--muted);
+}
+
+:root:not([data-theme="dark"]) .follow-label {
+  --follow-line: var(--muted);
+}
+
+:root:not([data-theme="dark"]) .scroll-cue:hover {
+  color: var(--ink);
+}
+
+/* The menu: dark text over the light hero, and a white bar once the page scrolls. */
+:root:not([data-theme="dark"]) .brand,
+:root:not([data-theme="dark"]) .brand:hover {
+  color: var(--ink);
+}
+
+:root:not([data-theme="dark"]) .brand-mark {
+  border-color: var(--ink);
+}
+
+:root:not([data-theme="dark"]) .site-nav a:not(.btn) {
+  color: var(--text);
+}
+
+:root:not([data-theme="dark"]) .site-nav a:not(.btn):hover,
+:root:not([data-theme="dark"]) .site-nav a.is-active:not(.btn) {
+  color: var(--ink);
+}
+
+:root:not([data-theme="dark"]) .site-header.is-scrolled,
+:root:not([data-theme="dark"]) .site-header.is-open {
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom-color: var(--line);
+}
+
+:root:not([data-theme="dark"]) .theme-toggle {
+  border-color: var(--line);
+  background: rgba(15, 23, 42, 0.04);
+  color: var(--ink);
+}
+
+:root:not([data-theme="dark"]) .theme-toggle:hover {
+  background: rgba(15, 23, 42, 0.09);
+}
+
+:root:not([data-theme="dark"]) .nav-toggle {
+  border-color: var(--line);
+}
+
+:root:not([data-theme="dark"]) .nav-toggle span {
+  background: var(--ink);
+}
+
+@media (max-width: 900px) {
+  :root:not([data-theme="dark"]) .site-nav {
+    background: #fff;
+  }
+
+  :root:not([data-theme="dark"]) .site-nav a:not(.btn) {
+    border-bottom-color: var(--line);
+  }
+
+  :root:not([data-theme="dark"]) .site-nav a.is-active:not(.btn) {
+    color: var(--blue);
+  }
+
+  :root:not([data-theme="dark"]) .theme-toggle,
+  :root:not([data-theme="dark"]) .theme-toggle:hover {
+    background: none;
+  }
+}
+
 /* ---------- Dark theme ---------- */
 
 [data-theme="dark"] {
@@ -1706,10 +1926,6 @@ fieldset.field {
 [data-theme="dark"] .field textarea,
 [data-theme="dark"] .preview {
   background: #141d36;
-}
-
-[data-theme="dark"] .page-nav {
-  background: var(--bg);
 }
 
 [data-theme="dark"] .tag {
@@ -1883,12 +2099,36 @@ fieldset.field {
     top: 100%;
     left: 0;
     right: 0;
+    height: calc(100vh - 73px);
+    height: calc(100dvh - 73px);
+    overflow-y: auto;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    padding: 8px var(--pad) 24px;
+    padding: 16px var(--pad) 32px;
     background: var(--navy);
-    border-bottom: 1px solid var(--line-dark);
+  }
+
+  /* The page behind the open menu stays still. */
+  .menu-open {
+    overflow: hidden;
+  }
+
+  /* While open, the menu button shows a cross. */
+  .nav-toggle span {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
   }
 
   .site-nav.is-open {
@@ -1896,9 +2136,14 @@ fieldset.field {
   }
 
   .site-nav a:not(.btn) {
-    min-height: 52px;
+    min-height: 60px;
     border-bottom: 1px solid var(--line-dark);
-    font-size: 17px;
+    font-size: 18px;
+  }
+
+  .site-nav a.is-active:not(.btn) {
+    box-shadow: none;
+    color: var(--amber);
   }
 
   .site-nav a[aria-current="page"]:not(.btn) {
@@ -2091,6 +2336,13 @@ fieldset.field {
   }
 }
 
+/* Phones: no "Follow me on" in the hero; LinkedIn is in the closing section and the footer. */
+@media (max-width: 640px) {
+  .hero-intro .follow {
+    display: none;
+  }
+}
+
 /* Very narrow phones: drop the decorative line so the follow links fit on one row. */
 @media (max-width: 400px) {
   .follow {
@@ -2184,8 +2436,7 @@ fieldset.field {
     padding-block: 16px;
   }
 
-  .cta,
-  #main:has(.page-nav) .cta {
+  .cta {
     min-height: 0;
     padding-block: var(--section);
   }
@@ -2195,13 +2446,23 @@ fieldset.field {
     border-radius: 22px;
   }
 
+  /* Footer: the copyright on one centred line. */
   .footer-base {
-    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+    padding-block: 18px;
     font-size: 13px;
+    text-align: center;
   }
 
   .footer-base p {
-    min-width: 0;
+    white-space: nowrap;
+  }
+
+  /* LinkedIn is already in the closing section, so the phone footer keeps only the copyright. */
+  .site-footer ul {
+    display: none;
   }
 }
 

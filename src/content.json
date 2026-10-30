@@ -1,0 +1,277 @@
+{
+  "_howToEdit": [
+    "Everything written on the website is in this file. Each piece of text has its own key, so changing one never changes another.",
+    "1. Change the text between the quotes and save the file.",
+    "2. Rebuild the pages:  node src/build.mjs",
+    "3. Check them locally:  node src/serve.mjs   then open http://localhost:4173/",
+    "Plain text only. Put **double stars** around words to make them bold.",
+    "Keep the quotes and commas as they are; the build stops and points to the line if something is missing."
+  ],
+
+  "site": {
+    "url": "https://dev-saurav-kumar.github.io/",
+    "language": "en",
+    "favicon": "assets/favicon.svg",
+    "themeColor": "#0a0f1e",
+    "analyticsCountUrl": "https://sauravkumar.goatcounter.com/count"
+  },
+
+  "seo": {
+    "title": "Saurav Kumar | Salesforce & Agentforce Developer, Jaipur",
+    "description": "Saurav Kumar is a Salesforce developer in Jaipur, India, working with Apex, Lightning Web Components, integrations and Agentforce for clients in the US, Australia and the UAE.",
+    "shareImage": "assets/og-card.jpg",
+    "shareImageAlt": "Saurav Kumar | Salesforce & Agentforce Developer, Jaipur",
+    "siteName": "Saurav Kumar",
+    "locale": "en_IN"
+  },
+
+  "googleProfile": {
+    "pageName": "Saurav Kumar | Salesforce & Agentforce Developer, Jaipur",
+    "name": "Saurav Kumar",
+    "jobTitle": "Salesforce Developer",
+    "description": "Salesforce developer in Jaipur working with Apex, Lightning Web Components, integrations and Agentforce.",
+    "image": "https://dev-saurav-kumar.github.io/assets/saurav.jpg",
+    "email": "sauravkumar843114@gmail.com",
+    "city": "Jaipur",
+    "region": "Rajasthan",
+    "countryCode": "IN",
+    "worksFor": "Cyntexa Labs Private Limited",
+    "alumniOf": "JECRC Foundation, Jaipur",
+    "knowsAbout": [
+      "Salesforce",
+      "Apex",
+      "Lightning Web Components",
+      "Agentforce",
+      "Salesforce Flows",
+      "Salesforce integrations",
+      "Salesforce Administration"
+    ],
+    "certifications": [
+      { "name": "Salesforce Certified Agentforce Specialist", "issued": "2025-09", "issuer": "Salesforce" },
+      { "name": "Salesforce Certified AI Associate", "issued": "2024-10", "issuer": "Salesforce" }
+    ],
+    "profiles": ["https://www.linkedin.com/in/saurav695"]
+  },
+
+  "header": {
+    "brandInitials": "SK",
+    "brandName": "Saurav Kumar",
+    "menu": [
+      { "label": "Profile", "section": "profile" },
+      { "label": "Work Experience", "section": "experience" },
+      { "label": "Skills", "section": "skills" },
+      { "label": "Projects", "section": "projects" },
+      { "label": "Certifications", "section": "certifications" }
+    ],
+    "themeButtonLabel": "Theme"
+  },
+
+  "hero": {
+    "welcome": "Welcome to my portfolio!",
+    "headingFirstLine": "Hello, my",
+    "headingSecondLine": "name’s",
+    "headingHighlight": "Saurav",
+    "headingEnd": ".",
+    "lines": [
+      "I’m a developer from India.",
+      "Currently working **@Cyntexa** as a Software Developer."
+    ],
+    "typedRoles": ["Salesforce Developer", "Agentforce Specialist", "Apex & LWC", "Salesforce Integrations"],
+    "typedRolesForScreenReaders": "Salesforce Developer, Agentforce Specialist, Apex and LWC, Salesforce Integrations",
+    "button": { "label": "See my work", "link": "#projects" },
+    "photo": {
+      "src": "assets/saurav.jpg",
+      "alt": "Saurav Kumar, Salesforce developer in Jaipur",
+      "width": 660,
+      "height": 900,
+      "fallbackInitials": "SK"
+    },
+    "follow": {
+      "label": "Follow me on",
+      "linkedinLink": "https://www.linkedin.com/in/saurav695",
+      "linkedinLabel": "LinkedIn"
+    },
+    "scrollDown": { "label": "Scroll down", "link": "#profile" }
+  },
+
+  "profile": {
+    "sectionId": "profile",
+    "label": "Profile",
+    "heading": "Who I am",
+    "paragraphs": [
+      "I’m a Software Developer with a B.Tech degree in Computer Science and Engineering from JECRC Foundation, Jaipur, Rajasthan.",
+      "I began my professional journey at Cyntexa in February 2024, where I had the opportunity to learn Salesforce and work on projects for clients across different industries. Over time, I’ve gained experience with multiple Salesforce products, including Sales Cloud, Experience Cloud, Life Sciences Cloud, and Agentforce.",
+      "Alongside my project work, I’m also involved in training freshers in Salesforce Administration and Development, helping them build a strong foundation and begin their own journeys in the Salesforce ecosystem.",
+      "My time at Cyntexa has been an important part of my professional growth. Over the past few years, I’ve learned a great deal, taken on new challenges, and grown both technically and personally. I’m genuinely grateful for the opportunities, experiences, and people who have contributed to my journey so far."
+    ]
+  },
+
+  "experience": {
+    "sectionId": "experience",
+    "label": "Work experience",
+    "heading": "Where I have worked",
+    "jobs": [
+      {
+        "role": "Salesforce Developer",
+        "company": "Cyntexa Labs Private Limited, Jaipur",
+        "dates": "February 2024 to present",
+        "points": [
+          "Develop and deliver Salesforce solutions for clients across multiple industries, including a Clinical Research Center and a Mechanical Parts Manufacturing Firm in the United States, a Financial Services and Wealth Management Company in Australia, and an Airline Company in Abu Dhabi, UAE.",
+          "Contribute to solution design, code reviews, debugging, and deployments to ensure high-quality, scalable, and reliable Salesforce implementations.",
+          "Collaborate closely with client stakeholders, business analysts, and QA teams to understand business requirements and deliver effective solutions.",
+          "Train freshers in Salesforce Administration and Development at Cyntexa and its sister company, S2Labs, helping them build practical skills and a strong foundation in the Salesforce ecosystem."
+        ]
+      }
+    ]
+  },
+
+  "skills": {
+    "sectionId": "skills",
+    "label": "Skills",
+    "heading": "What I work in",
+    "list": [
+      { "name": "Apex", "details": "Triggers, SOQL / SOSL, DML & Database Methods, Batch, Queueable, Schedulable Apex, Future Methods, Exception Handling, Apex Test Classes" },
+      { "name": "Lightning Web Components", "details": "Reusable, User-friendly Components, Parent-Child Communication, Dynamic rendering, Large-data Lookups, Real Time Progress Indicator." },
+      { "name": "Integration", "details": "REST API, Inbound & Outbound Integration, Platform Events, Webhooks, Named Credentials, OAuth 2.0" },
+      { "name": "Salesforce Admin", "details": "Flows, Approval Processes, Data Management, Data Security, Custom Metadata, Custom Settings, Reports & Dashboards" },
+      { "name": "Clouds and AI", "details": "Sales Cloud, Service Cloud, Experience Cloud, Life Sciences Cloud, Agentforce" },
+      { "name": "Web and delivery", "details": "Next.js, React, JavaScript, HTML, CSS. Salesforce DX, Copado, Change Sets, Git" }
+    ]
+  },
+
+  "projects": {
+    "sectionId": "projects",
+    "label": "Projects",
+    "heading": "Projects I can talk about in detail",
+    "list": [
+      {
+        "id": "airline",
+        "industry": "Airline",
+        "place": "UAE",
+        "title": "Agentforce Implementation for an Airline Business Firm",
+        "context": "",
+        "points": [
+          "Automated the Activity Report Analysis process using Salesforce Agentforce, replacing the previous manual Excel/CSV upload and detailed prompt-driven analysis with an AI-powered conversational experience that automatically retrieves, filters, analyzes, and summarizes relevant activities based on the requested route or country",
+          "Configured Agentforce to retrieve activities for the current year and Q1 of the following year, restricting analysis to activities associated with Leads and Accounts, while ensuring all relevant markets, accounts, activity types, and material actions across the complete timeline are considered",
+          "Implemented AI-driven activity analysis to identify route- or country-related activities, remove duplicate records, and consolidate recurring activities while preserving important commercial details from fields such as Description, Agenda, Meeting Focus, and other activity information",
+          "Developed dynamic response handling based on activity volume, where Agentforce generates a structured activity report directly in the chat for up to 300 records, including Region, Activity Type, and consolidated Action/Summary, while larger datasets exceeding 300 records are processed and delivered as a Word document via email",
+          "Designed the Agentforce response format to ensure consistent and business-ready outputs, retaining all material actions supporting the requested route or country while eliminating repeated records and preserving the required activity details",
+          "Streamlined the overall reporting workflow by enabling users to simply request activities for a route or country, allowing Agentforce to automatically perform data retrieval, filtering, deduplication, summarization, and report delivery without requiring users to provide complex analysis instructions"
+        ]
+      },
+      {
+        "id": "clinical",
+        "industry": "Clinical research",
+        "place": "US",
+        "title": "Salesforce Development for a Clinical Research Foundation",
+        "context": "The client is a US-based non-profit foundation running a multi-site clinical research study for a rare genetic disorder. Built on Salesforce Life Sciences Cloud, the platform manages the full participant journey - screening, electronic consent, study visits, patient-reported outcome (ePRO) surveys and stipend payments - across a nationwide network of research sites.",
+        "points": [
+          "Migrated survey question data across environments keeping their dependency and sequence intact, as each questionnaire is built from related records instead of object fields, where a wrong import order silently distorts the rendered form",
+          "Created an Experience Cloud site with a user-friendly dashboard built in custom Lightning Web Components (LWC), giving site users most of the functionality that previously required internal Salesforce access - converting a registered member into a study participant, sending consent forms, principal investigator (PI) eligibility, structured screen-failure tracking and study visits - cutting license cost for the organization",
+          "Integrated DocuSign eSignature under a 21 CFR Part 11 configuration, with DocuSign templates for informed consent, assent and medical record release forms, using webhooks to sync signature status back into Salesforce in real time",
+          "Integrated PayQuicker payment APIs to issue participant stipends on visit completion, with registration tracking, payment status and retry handling for failed transactions",
+          "Built and deployed 30+ site-branded email templates across 4 research sites covering enrollment, visit reminders, follow-ups and screen failures, each matching IRB-approved content and site-specific requirements"
+        ]
+      },
+      {
+        "id": "finance",
+        "industry": "Financial services",
+        "place": "Australia",
+        "title": "Salesforce Development for a Financial Services Firm",
+        "context": "The client is an Australia-based financial services company providing wealth management, accounting, and mortgage services. They were already using Salesforce but were facing performance and scalability issues due to poorly structured automation and increasing data volume.",
+        "points": [
+          "Analyzed and improved existing Salesforce Flows, where most logic was built in after-save triggers with inefficient practices such as too many DML operations and record creation inside loops. Refactored these flows to follow best practices, improving system performance and stability without affecting existing functionality",
+          "Built a CSV-based bulk processing solution using Lightning Web Components (LWC), allowing users to upload large datasets, track real-time progress, and download detailed error reports for failed records",
+          "Developed a custom LWC-based training interface with a sidebar navigation (similar to Salesforce Setup search), which displays structured content from JSON to help users understand business processes and system usage",
+          "Created a custom entity-to-lead conversion feature for both single and bulk records (via CSV upload), ensuring all related records are correctly linked to the new Lead and generating a summary task with record details",
+          "Implemented automation for version changes on records, including user confirmation prompts and sending email notifications to related Cases and Opportunities based on record type",
+          "Developed a custom merge functionality for a complex custom object with 600+ fields, handling non-editable and formula fields while merging all related child records into the master record"
+        ]
+      },
+      {
+        "id": "slack",
+        "industry": "Integration",
+        "place": "Slack",
+        "title": "Salesforce–Slack Integration for Real-Time Lead Assignment",
+        "context": "The client required integration between Salesforce and Slack to streamline lead assignment and improve response time. Leads were initially assigned to queues, and sales users were notified on Slack with options to take ownership directly.",
+        "points": [
+          "Integrated Salesforce with Slack to send real-time notifications when new Leads were assigned to queues, improving visibility and response time for sales teams",
+          "Implemented interactive Slack messages with action buttons, allowing users to claim Lead ownership directly from Slack without logging into Salesforce",
+          "Developed a two-way integration using Slack webhooks and REST APIs, where user actions (button clicks) trigger requests back to Salesforce to update Lead ownership in real time",
+          "Configured Salesforce to send confirmation responses back to Slack after ownership assignment, notifying users with Lead details and successful assignment messages",
+          "Designed bulkified Apex triggers to support high-volume lead assignment events without exceeding governor limits",
+          "Used asynchronous processing to ensure reliable communication and prevent delays in transactions",
+          "Implemented secure API communication using Named Credentials, and authentication mechanisms to protect integration endpoints",
+          "Built configurable settings to allow administrators to manage Slack channels and queue mappings dynamically"
+        ]
+      },
+      {
+        "id": "manufacturer",
+        "industry": "Manufacturing",
+        "place": "US",
+        "title": "Salesforce Development for an Agricultural Equipment Manufacturer",
+        "context": "The client is a US-based agricultural equipment manufacturer operating across multiple countries, providing farming machinery and related services. The organization already had a Salesforce implementation, and the requirement was to enhance the Experience Cloud portal to improve customer support and case management.",
+        "points": [
+          "Developed and enhanced the Experience Cloud portal by building multiple Lightning Web Components (LWC) to support case creation for different record types, improving usability for global customers",
+          "Implemented a QR code–based product identification system, allowing users to scan or manually enter a unique product number; the system validates the input and auto-populates relevant details if a match is found, while still allowing users to proceed with manually entered values even if no match exists",
+          "Designed and implemented dynamic lookup search components capable of handling large datasets, providing real-time suggestions as users type, with optimized search triggered after a minimum character threshold",
+          "Enabled flexible input handling in lookup fields, allowing users to either select from suggestions or manually enter valid values; unmatched inputs are still captured and stored in a separate field for tracking and further processing",
+          "Improved user interaction by handling UI behaviors such as auto-closing dropdowns on outside click and ensuring smooth selection and input experience",
+          "Built a modular LWC architecture with reusable components, using parent-child communication to manage data flow and improve maintainability",
+          "Developed dynamic UI rendering based on record type selection, enabling users to interact with different layouts and components based on the selected case category",
+          "Ensured seamless integration with existing Salesforce data models and processes, maintaining data consistency while extending system functionality"
+        ]
+      },
+      {
+        "id": "razorpay",
+        "industry": "Proof of concept",
+        "place": "Payments",
+        "title": "Salesforce - Razorpay Integration",
+        "context": "The requirement was to build a proof of concept (POC) to integrate Razorpay with Salesforce, enabling users to make payments through Salesforce Sites and track transaction outcomes within the platform.",
+        "points": [
+          "Integrated Razorpay payment gateway with Salesforce using Salesforce Sites, enabling users to initiate and complete transactions through a public-facing interface",
+          "Designed and implemented end-to-end payment flow, redirecting users to Razorpay for secure payment processing and handling response back in Salesforce",
+          "Developed webhook-based integration to capture real-time payment events (success/failure) from Razorpay and process them within Salesforce",
+          "Created a custom object to store transaction details such as payment status, amount, response data, and failure reasons for tracking and reporting",
+          "Implemented Apex REST endpoints to securely receive and process webhook payloads from Razorpay",
+          "Added validation and error handling to ensure accurate recording of transaction outcomes and prevent duplicate or inconsistent data",
+          "Ensured secure communication between Razorpay and Salesforce by validating webhook requests and handling authentication",
+          "Built a scalable structure to support future enhancements such as retries, reconciliation, and reporting on payment data"
+        ]
+      }
+    ]
+  },
+
+  "certifications": {
+    "sectionId": "certifications",
+    "label": "Certifications",
+    "heading": "Salesforce certified",
+    "credentialIdLabel": "Credential ID",
+    "list": [
+      { "name": "Salesforce Certified Agentforce Specialist", "date": "September 2025", "credentialId": "6768758" },
+      { "name": "Salesforce Certified AI Associate", "date": "October 2024", "credentialId": "5111381" }
+    ]
+  },
+
+  "connect": {
+    "sectionId": "connect",
+    "heading": "Let's connect.",
+    "text": "Have a question, or want to talk about Salesforce? Send me an email or message me on LinkedIn.",
+    "linkedinButton": { "label": "Connect on LinkedIn", "link": "https://www.linkedin.com/in/saurav695" },
+    "emailButton": { "label": "sauravkumar843114@gmail.com", "email": "sauravkumar843114@gmail.com" }
+  },
+
+  "footer": {
+    "copyright": "Saurav Kumar | All rights reserved.",
+    "linkedin": { "label": "LinkedIn", "link": "https://www.linkedin.com/in/saurav695" }
+  },
+
+  "notFound": {
+    "pageTitle": "Page not found | Saurav Kumar",
+    "description": "This page does not exist.",
+    "label": "Error 404",
+    "heading": "This page does not exist.",
+    "text": "The address is wrong, or the page has been moved.",
+    "button": { "label": "Go to the portfolio", "link": "/" }
+  }
+}
