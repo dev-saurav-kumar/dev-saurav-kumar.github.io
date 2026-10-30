@@ -790,6 +790,12 @@ h3,
   stroke-linejoin: round;
 }
 
+/* The "Scroll down" cue sits centred at the bottom of the hero. */
+.hero-intro > .container:last-child {
+  display: flex;
+  justify-content: center;
+}
+
 .scroll-cue {
   display: inline-flex;
   align-items: center;
